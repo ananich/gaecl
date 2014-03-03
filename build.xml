@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="gaeshell" default="build" basedir=".">
+	<description>
+            Command-line shell for Google App Engine Datastore
+    </description>
+
+	<property file="${basedir}/build.properties"/>
+	<property name="build.dir" value="${basedir}/build"/>
+
+	<path id="runtime.classpath">
+		<fileset dir="${appengine.sdk.home}/lib/user">
+			<include name="**/*.jar" />
+		</fileset>
+		<pathelement location="${appengine.sdk.home}/lib/appengine-remote-api.jar" />
+	</path>
+	
+	<target name="prepare">
+		
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.dir}/classes" />
+		<mkdir dir="${build.dir}/src"/>
+		<uptodate property="isUpToDate" 
+			srcfile="${basedir}/json/json.lex" 
+			targetfile="${build.dir}/src/com/inpun/alt/gaecl/Parser.java"/>
+	</target>
+	
+	<target name="genarate-sources" unless="isUpToDate" depends="prepare">
+		<java classname="JFlex.Main" taskname="jflex">
+			<arg value="-q" />
+			<arg value="--nobak" />
+			<arg value="-d" />
+			<arg value="${build.dir}/src/com/inpun/alt/gaecl"/>
+			<arg value="${basedir}/json/json.lex" />
+			<classpath>
+				<pathelement location="${basedir}/json/JFlex-1.4.3.jar" />
+			</classpath>
+		</java>
+	</target>
+
+	<target name="build" depends="genarate-sources" description="build JAR file and pack sources">
+		<javac srcdir="${basedir}/src" destdir="${build.dir}/classes" source="1.7" target="1.7" classpathref="runtime.classpath" >
+			<exclude name="**/Parser.java"/>
+		</javac>
+		<javac srcdir="${build.dir}/src" destdir="${build.dir}/classes" source="1.7" target="1.7" classpathref="runtime.classpath" />
+		<copy todir="${build.dir}/classes">
+			<fileset dir="${basedir}/src">
+				<exclude name="**/*.java" />
+				<exclude name="**/*.bak" />
+			</fileset>
+		</copy>
+		<jar destfile="${build.dir}/${ant.project.name}.jar">
+			<fileset dir="${build.dir}/classes" />
+			<manifest>
+				<attribute name="Main-Class" value="com.inpun.alt.gaecl.AppEngineShell" />
+			</manifest>
+		</jar>
+		<zip destfile="${build.dir}/alt-gaecl.zip">
+			<fileset dir="${basedir}/src">
+				<exclude name="**/*.bak" />
+			</fileset>
+		</zip>
+	</target>
+
+	<target name="clean">
+		<deltree dir="${build.dir}"/>
+	</target>
+
+</project>

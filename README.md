@@ -97,3 +97,9 @@ Complete list of supported ​data types:
 * User
 * List
 * StringList
+
+Build dependencies
+===
+- commons-cli-1.2
+- commons-io-2.4
+- jflex-1.4.3
