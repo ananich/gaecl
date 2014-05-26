@@ -12,6 +12,8 @@ The Goal of the project is to create a simple command line client for the Google
 
 The initial purpose of this tool was to do technical support for customers. [Altirnao](http://www.altirnao.com/) has a [SaaS application](http://www.altirnao.com/products/documents-management/) running on App Engine that does Document Management on top of Google Apps. This application's data is on GAE and from time to time support engineers need to make a modification directly in the datastore to fix a problem or to help a customer.
 
+Note: in irder to use this tool you need to enable remote API for a particular project as described in this document https://developers.google.com/appengine/docs/java/tools/remoteapi
+
 Examples of usage
 ======
 Set namespace:
