@@ -12,17 +12,19 @@ The Goal of the project is to create a simple command line client for the Google
 
 The initial purpose of this tool was to do technical support for customers. [Altirnao](http://www.altirnao.com/) has a [SaaS application](http://www.altirnao.com/products/documents-management/) running on App Engine that does Document Management on top of Google Apps. This application's data is on GAE and from time to time support engineers need to make a modification directly in the datastore to fix a problem or to help a customer.
 
+Note: in order to use this tool you need to enable remote API for a particular project as described in this document https://developers.google.com/appengine/docs/java/tools/remoteapi
+
 Examples of usage
 ======
 Set namespace:
 ```
-> namespace "-GLOBAL-"
+> namespace "-GLOBAL-";
 namespace is now "-GLOBAL-"
 ```
 
 Load entity:
 ```
-> print KEY("Domain", "mycustomer.com")
+> print key("Domain", "mycustomer.com");
 {
   "domainAdmin" : "admin@mycustomer.com",
   "maxNbUsers" : 12,
@@ -33,18 +35,18 @@ Load entity:
 
 Save entity:
 ```
-> put KEY("Domain", "mycustomer.com") {
+> put key("Domain", "mycustomer.com") {
   "domainAdmin" : "admin@mycustomer.com",
   "maxNbUsers" : 12,
   "trialExpires" : "2013-06-30 00:00:00",
   "status" : "ACTIVE"
-}
-entity saved successfully at KEY("Domain", "mycustomer.com")
+};
+entity saved successfully at key("Domain", "mycustomer.com")
 ```
 
 Using lists:
 ```
-> print KEY("Role", "00123412ABCD")
+> print key("Role", "00123412ABCD");
 {
   "name" : "Administrators",
   "members" : [ "user1@domain.com", "user2@domain.com" ]
@@ -52,36 +54,36 @@ Using lists:
 ```
 
 ```
-> put KEY("Role", "00123412ABCD") {
+> put key("Role", "00123412ABCD") {
   "name" : "Administrators",
   "members" : [ "user1@domain.com", "user2@domain.com", "user3@domain.com" ]
-}
-entity saved successfully at KEY("Role", "00123412ABCD")
+};
+entity saved successfully at key("Role", "00123412ABCD")
 ```
 
 List all the keys of type "Domain":
 ```
-> list Domain
-{ key : KEY("Domain", "abcd.com") }
-{ key : KEY("Domain", "boo.com") }
+> list Domain;
+{ key : key("Domain", "abcd.com") }
+{ key : key("Domain", "boo.com") }
 ...
-{ key : KEY("Domain", "xyz.com") }
+{ key : key("Domain", "xyz.com") }
 ```
 
 List only active "Domain"s:
 ```
-> list Domain { "status" : "ACTIVE" }
-{ key : KEY("Domain", "abcd.com") }
+> list Domain { "status" : "ACTIVE" };
+{ key : key("Domain", "abcd.com") }
 ...
-{ key : KEY("Domain", "xyz.com") }
+{ key : key("Domain", "xyz.com") }
 ```
 
 Print the ACTIVE domains with the maxNbUsers and the trialExpires property:
 ```
-> list Domain { "status" : "ACTIVE" } [ "maxNbUsers", "trialExpires" ]
-{ key : KEY("Domain", "abcd.com"), "maxNbUsers" : 34, "trialExpires" : "2013-03-21 10:28:34" }
+> list Domain { "status" : "ACTIVE" } [ "maxNbUsers", "trialExpires" ];
+{ key : key("Domain", "abcd.com"), "maxNbUsers" : 34, "trialExpires" : "2013-03-21 10:28:34" }
 ...
-{ key : KEY("Domain", "xyz.com"), "maxNbUsers", 89, "trialExpires" : NULL }
+{ key : key("Domain", "xyz.com"), "maxNbUsers", 89, "trialExpires" : NULL }
 ```
 
 Complete list of supported ​data types:
@@ -102,4 +104,3 @@ Build dependencies
 ===
 - commons-cli-1.2
 - commons-io-2.4
-- jflex-1.4.3
