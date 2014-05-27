@@ -103,4 +103,9 @@ Complete list of supported ​data types:
 Build dependencies
 ===
 - commons-cli-1.2
+<<<<<<< HEAD
 - commons-io-2.4
+=======
+- commons-io-2.4
+- jflex-1.4.3
+>>>>>>> FETCH_HEAD
