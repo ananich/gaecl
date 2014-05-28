@@ -14,6 +14,10 @@ The initial purpose of this tool was to do technical support for customers. [Alt
 
 Note: in order to use this tool you need to enable remote API for a particular project as described in this document https://developers.google.com/appengine/docs/java/tools/remoteapi
 
+Known issues
+======
+[Application-specific password](https://support.google.com/accounts/answer/185833) should be used in case of 2-step verification on google account. Otherwise LoginException with reason "BadAuthentication InvalidSecondFactor" will be thrown.
+
 Examples of usage
 ======
 Set namespace:
