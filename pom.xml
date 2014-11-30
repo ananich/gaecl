@@ -69,11 +69,11 @@
                         <goals>
                             <goal>java</goal>
                         </goals>
-                        <configuration>
-                            <mainClass>com.inpun.alt.gaecl.AppEngineShell</mainClass>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <mainClass>com.inpun.alt.gaecl.AppEngineShell</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
