@@ -29,7 +29,7 @@ Examples of usage
 ======
 Set namespace:
 ```
-> namespace "-GLOBAL-";
+> namespace -GLOBAL-;
 namespace is now "-GLOBAL-"
 ```
 
