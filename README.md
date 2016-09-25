@@ -21,7 +21,10 @@ Known issues
 How to install
 ======
 ```
+# build
 gradle installDist
+
+# run
 ./build/install/gaecl/bin/gaeshell --help
 ```
 
