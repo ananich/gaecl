@@ -18,6 +18,13 @@ Known issues
 ======
 [Application-specific password](https://support.google.com/accounts/answer/185833) should be used in case of 2-step verification on google account. Otherwise LoginException with reason "BadAuthentication InvalidSecondFactor" will be thrown.
 
+How to install
+======
+```
+gradle installDist
+./build/install/gaecl/bin/gaeshell --help
+```
+
 Examples of usage
 ======
 Set namespace:
@@ -103,8 +110,3 @@ Complete list of supported ​data types:
 * User
 * List
 * StringList
-
-Build dependencies
-===
-- commons-cli-1.2
-- commons-io-2.4
